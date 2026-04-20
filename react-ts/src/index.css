@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+@theme inline {
+    --color-background: var(--primary);
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+     --color-success: var(--success);
+     --color-warning: var(--warning);
+    --color-danger: var(--danger);
+     --color-info: var(--info);
+     --color-card: var(--card);
+}
+
+:root {
+    --primary: #0F172A;        /* midnight blue */
+    --secondary: #1E293B;
+
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #3B82F6;
+
+    --card: #FFFFFF;
+}
