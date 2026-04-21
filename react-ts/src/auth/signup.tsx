@@ -1,7 +1,42 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Link } from "react-router";
+import {signup} from "../api/userApi";
+
 
 export default function SignUp() {
+    const [fetching, setFetching] = useState(false);
+    const[enterValue, setEnterValue] = useState({
+        name: "",
+        email: "",
+        password: "",
+    })
+
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const name = enterValue.name;
+        const email = enterValue.email;
+        const password = enterValue.password;
+
+        try{
+            setFetching(true);
+            const result = await signup({ name, email, password });
+            if(result){
+                alert("Signup successful! Please log in.");
+            }
+        }catch(error){
+            console.error("Signup failed:", error);
+        } finally {
+            setFetching(false);
+            console.log(enterValue);
+            setEnterValue({
+            name: "",
+            email: "",
+            password: "",
+        })
+        }
+    }
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
 
@@ -17,24 +52,32 @@ export default function SignUp() {
         </h2>
 
         {/* Form */}
-        <form className="space-y-4">
+        <form 
+        onSubmit={handleSubmit}
+        className="space-y-4">
 
           <input
             type="text"
             placeholder="Name"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-green-400"
+            value={enterValue.name}
+            onChange={(e) => setEnterValue({...enterValue, name: e.target.value})}
           />
 
           <input
             type="email"
             placeholder="Email"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-green-400"
+            value={enterValue.email}
+            onChange={(e) => setEnterValue({...enterValue, email: e.target.value})}
           />
 
           <input
             type="password"
             placeholder="Password"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-green-400"
+            value={enterValue.password}
+            onChange={(e) => setEnterValue({...enterValue, password: e.target.value})}
           />
 
           <button
