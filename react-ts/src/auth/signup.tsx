@@ -83,8 +83,9 @@ export default function SignUp() {
           <button
             type="submit"
             className="w-full bg-green-500 hover:bg-green-600 hover:scale-105 transition p-3 rounded-lg font-medium"
+            disabled={fetching}
           >
-            Sign Up
+           {fetching ? 'Signing up...' : 'Sign Up'}
           </button>
 
         </form>
