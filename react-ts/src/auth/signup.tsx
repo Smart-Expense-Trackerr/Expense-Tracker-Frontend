@@ -28,7 +28,6 @@ export default function SignUp() {
             console.error("Signup failed:", error);
         } finally {
             setFetching(false);
-            console.log(enterValue);
             setEnterValue({
             name: "",
             email: "",
