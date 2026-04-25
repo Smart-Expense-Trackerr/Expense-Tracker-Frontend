@@ -1,43 +1,82 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import {signup} from "../api/userApi";
+import Success from "../components/Modals/Success";
+import Error from "../components/Modals/Error";
 
 
 export default function SignUp() {
-    const [fetching, setFetching] = useState(false);
-    const[enterValue, setEnterValue] = useState({
-        name: "",
-        email: "",
-        password: "",
-    })
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [fetching, setFetching] = useState(false);
+  const[enterValue, setEnterValue] = useState({
+      name: "",
+      email: "",
+      password: "",
+  })
 
-    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const name = enterValue.name;
-        const email = enterValue.email;
-        const password = enterValue.password;
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const name = enterValue.name;
+      const email = enterValue.email;
+      const password = enterValue.password;
 
-        try{
-            setFetching(true);
-            const result = await signup({ name, email, password });
-            if(result){
-                alert("Signup successful! Please log in.");
-            }
-        }catch(error){
-            console.error("Signup failed:", error);
-        } finally {
-            setFetching(false);
-            setEnterValue({
-            name: "",
-            email: "",
-            password: "",
-        })
-        }
-    }
+      try{
+          setFetching(true);
+          const result = await signup({ name, email, password });
+          setSuccess((result as any).message || "Signup successful!");
+          setEnterValue({
+          name: "",
+          email: "",
+          password: "",
+      })      
+      }catch(error: any){
+          setError(error?.message || "Something went wrong");
+      } finally {
+          setFetching(false);
+      }
+  }
+
+  useEffect(() => {
+  if (success) {
+    const timer = setTimeout(() => {
+      setSuccess(null);
+
+      // 🚀 redirect after alert
+      navigate("/dashboard");
+
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }
+
+  if (error) {
+    const timer = setTimeout(() => {
+      setError(null);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }
+}, [success, error, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
+
+      {error && (
+        <Error
+          title="Error"
+          description={error}
+        />
+      )}
+
+      {success && (
+        <Success
+          title="Success"
+          description={success}
+        />
+      )}
 
       {/* Card */}
       <motion.div

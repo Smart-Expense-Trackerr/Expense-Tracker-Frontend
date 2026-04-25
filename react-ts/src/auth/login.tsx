@@ -1,16 +1,21 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import {login} from "../api/userApi";
+import Error from "../components/Modals/Error";
+import Success from "../components/Modals/Success";
 
 export default function Login() {
-const [enteredValue, setEnteredValue] = useState({
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [enteredValue, setEnteredValue] = useState({
   email: '',
   password: ''
-})
-const [fetching, setFetching] = useState(false);
+  })
+  const [fetching, setFetching] = useState(false);
 
-const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) =>{
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) =>{
   e.preventDefault()
   const email = enteredValue.email;
   const password = enteredValue.password;
@@ -18,24 +23,55 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) =>{
   try {
     setFetching(true)
     const result = await login({email, password, Date})
-    if(result){
-       alert("Login successful!");
-            }
-            
-        }catch(error){
-            console.error("Signup failed:", error);
-        } finally {
-            setFetching(false);
+          setSuccess((result as any).message || "Login successful!");
             setEnteredValue({
             email: "",
             password: "",
         })
+        }catch(error: any){
+          setError(error?.message || "Something went wrong");
+        } finally {
+            setFetching(false);
         }
-}
+  }
 
+  useEffect(() => {
+  if (success) {
+    const timer = setTimeout(() => {
+      setSuccess(null);
+
+      navigate("/dashboard");
+
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }
+
+  if (error) {
+    const timer = setTimeout(() => {
+      setError(null);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }
+}, [success, error, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
+
+      {error && (
+              <Error
+                title="Error"
+                description={error}
+              />
+            )}
+      
+            {success && (
+              <Success
+                title="Success"
+                description={success}
+              />
+            )}
 
       {/* Card */}
       <motion.div

@@ -1,7 +1,6 @@
 import {motion} from "framer-motion"
 import { useNavigate } from "react-router-dom";
-import { PageLoading } from "./Animations/Animation";
-
+import { PageLoading } from "../components/Animations/Animation";
 
 export default function Home() {
     const navigate = useNavigate();

@@ -24,11 +24,19 @@ export async function signup({ name, email, password }: signupProp) {
             password
         })
     })
-    const data = await response.json();
-    if (!response.ok) {
-        throw new Error(data.error || 'Signup failed');
+    const data = await response.json()as {
+        message?: string;
+        user?: any;
+        token?: string;
+        error?: string; 
     }
+    if (!response.ok) {
+    throw new Error(data.error || data.message || "Signup failed");
+    }
+    localStorage.setItem("token", data.token || "");
+    localStorage.setItem("tokenExpiry",(Date.now() + 60 * 60 * 1000).toString());
     return data;
+    
     
 }
 
@@ -44,11 +52,16 @@ export async function login({email, password, Date}: loginprop) {
             password
         })
     })
-    const data = await response.json()
+    const data = await response.json()as {
+        token?: string;
+        error?: string;
+        message?: string;
+    };
+
     if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
+        throw new Error(data.error || data.message || 'Login failed');
     }
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("token", data.token || "");
     localStorage.setItem("tokenExpiry",(Date.now() + 60 * 60 * 1000).toString());
     return data;
 
