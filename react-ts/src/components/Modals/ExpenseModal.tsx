@@ -21,7 +21,7 @@ export default function ExpenseModal({ open, onClose, onSubmit}: Props) {
     <div 
     className="fixed inset-0 bg-black/20 backdrop-blur flex items-center justify-center z-50">
       
-      <div className="bg-[#1C2541] p-6 rounded-xl w-[400px] text-white">
+      <div className="bg-[#1C2541] p-6 rounded-xl w-100 text-white">
 
         <h2 className="text-xl font-semibold mb-4">
           Add Transaction
