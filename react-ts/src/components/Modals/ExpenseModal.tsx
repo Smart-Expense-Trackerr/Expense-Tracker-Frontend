@@ -25,7 +25,7 @@ export default function ExpenseModal({ open, onClose, onSubmit}: Props) {
 
         <h2 className="text-xl font-semibold mb-4">
           Add Transaction
-        </h2>
+        </h2> 
 
         {/* TYPE */}
         <select
