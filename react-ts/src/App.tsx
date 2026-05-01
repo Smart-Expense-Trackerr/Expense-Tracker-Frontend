@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import SignUp from "./auth/signup";
 import Login from "./auth/login";
 import Dashboard from "./pages/Dashboard";
+import Expenses from "./pages/Expenses";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,12 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <Dashboard/>,
+        children : [
+          {
+            path: "expenses",
+            element: <Expenses/>
+        } 
+        ]
       }
     ],
   },

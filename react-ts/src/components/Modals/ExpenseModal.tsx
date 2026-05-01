@@ -1,19 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CreateExpense } from "../../api/expenseApi";
+import { useNavigate } from "react-router";
 
 type Props = {
-  open: boolean;
-  onClose: () => void;
-  onSubmit: (data: any) => void;
+    open: boolean;
+    onClose: () => void;
+    onSubmit: (data: any) => void;
+    loading?: boolean;
 };
 
-export default function ExpenseModal({ open, onClose, onSubmit}: Props) {
+export default function ExpenseModal({ open, onClose, onSubmit, loading }: Props) {
     const [form, setForm] = useState({
-    type: "expense",
+    type: "income",
     amount: "",
     category: "food",
     description: "",
     currency: "NGN",
   });
+
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    onSubmit({
+        ...form,
+        amount: Number(form.amount),
+    });
+    };
+
+    useEffect(() => {
+    if (!open) {
+        setForm({
+        type: "income",
+        amount: "",
+        category: "food",
+        description: "",
+        currency: "NGN",
+        });
+    }
+    }, [open]);
 
   if (!open) return null;
 
@@ -28,6 +52,8 @@ export default function ExpenseModal({ open, onClose, onSubmit}: Props) {
         </h2> 
 
         {/* TYPE */}
+        <form 
+        onSubmit={handleSubmit}>
         <select
           className="w-full p-2 mb-3 bg-[#0B132B] rounded"
           value={form.type}
@@ -85,15 +111,10 @@ export default function ExpenseModal({ open, onClose, onSubmit}: Props) {
         <div className="flex gap-2">
           
           <button
-            onClick={() => {
-              onSubmit({
-                ...form,
-                amount: Number(form.amount),
-              });
-            }}
+            disabled={loading}
             className="bg-blue-500 hover:bg-blue-600 flex-1 py-2 rounded"
           >
-            Save
+           {loading ? "Adding..." : "Add Transaction"}
           </button>
 
           <button
@@ -102,9 +123,10 @@ export default function ExpenseModal({ open, onClose, onSubmit}: Props) {
           >
             Cancel
           </button>
+          
 
         </div>
-
+        </form>
       </div>
     </div>
   );
