@@ -63,3 +63,23 @@ export async function DeleteExpense(id: string){
     }
     return data;
 }
+
+
+export async function UpdateExpense(id: string, data: any) {
+  const res = await fetch(`http://localhost:5000/expenses/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await res.json();
+
+  if (!res.ok) {
+    throw new Error(result.error || "Failed to update expense");
+  }
+
+  return result;
+}

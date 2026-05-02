@@ -6,9 +6,14 @@ export default function Expenses() {
 
   const fetchExpenses = async () => {
     const data = await GetExpenses();
-    console.log(data)
-    setExpenses(data.expenses);
-  };
+    setExpenses(
+      Array.isArray(data.expenses)
+        ? data.expenses
+        : data.expenses
+        ? [data.expenses]
+        : []
+    );;
+      };
 
   useEffect(() => {
     fetchExpenses();
@@ -20,7 +25,7 @@ export default function Expenses() {
   };
 
   return (
-    <div className="p-6 text-white">
+    <div className="p-6 text-white max-w-3xl mx-auto">
       <h2 className="text-2xl mb-4">All Expenses</h2>
 
       <div className="space-y-3">
