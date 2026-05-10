@@ -4,6 +4,7 @@ import { CreateExpense } from "../api/expenseApi";
 import { useNavigate } from "react-router-dom";
 import Success from "./Modals/Success";
 import Error from "./Modals/Error";
+import { Logout } from "../api/userApi";
 
 export default function Sidebar() {
     const navigate = useNavigate()
@@ -32,6 +33,20 @@ export default function Sidebar() {
         setLoading(false);
     };
 
+    const handleLogout = async () => {
+        try {
+            setLoading(true);
+            const result = await Logout();
+             setSuccess(result.message || "Logged out successfully");
+
+            navigate("/login");
+        } catch (err: any) {
+            setError(err.message || "Error during logout");
+        } finally {
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
     if (success || error || warning) {
         const timer = setTimeout(() => {
@@ -56,7 +71,9 @@ export default function Sidebar() {
             </h1>
 
             <nav className="flex flex-col gap-4">
-            <button className="text-left hover:text-blue-400">
+            <button 
+            onClick={() => navigate("/dashboard/profile")}
+            className="text-left hover:text-blue-400">
                 Profile
             </button>
 
@@ -78,6 +95,12 @@ export default function Sidebar() {
             onClick={() => setOpen(true)}
             className="mt-auto bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg">
             + Add Expense
+            </button>
+            <button
+            onClick={handleLogout}
+            className="text-left hover:text-blue-400"
+            >
+            Logout
             </button>
         </aside>
 

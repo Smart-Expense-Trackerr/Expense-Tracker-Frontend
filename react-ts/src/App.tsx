@@ -6,6 +6,9 @@ import SignUp from "./auth/signup";
 import Login from "./auth/login";
 import Dashboard from "./pages/Dashboard";
 import Expenses from "./pages/Expenses";
+import Profile from "./pages/Profile";
+import { useEffect } from "react";
+import AuthCheck from "./auth/AuthCheck";
 
 const router = createBrowserRouter([
   {
@@ -25,18 +28,28 @@ const router = createBrowserRouter([
         element: <Login/>,
       },
       {
-        path: "dashboard",
-        element: <Dashboard/>,
-      },
-      {
-            path: "dashboard/expenses",
-            element: <Expenses/>
-        } 
+        element: <AuthCheck/>,
+        children: [
+          {
+            path: "dashboard",
+            element: <Dashboard/>,
+          },
+          {
+                path: "dashboard/expenses",
+                element: <Expenses/>
+            },
+            {
+              path: "dashboard/profile",
+              element: <Profile/>
+            }
+        ]
+      }
     ],
   },
 ]);
 
 export default function App() {
+
   return (
     <RouterProvider router={router} />
 )};

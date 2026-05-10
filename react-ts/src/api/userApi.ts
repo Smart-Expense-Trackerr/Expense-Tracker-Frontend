@@ -62,7 +62,76 @@ export async function login({email, password, Date}: loginprop) {
         throw new Error(data.error || data.message || 'Login failed');
     }
     localStorage.setItem("token", data.token || "");
-    localStorage.setItem("tokenExpiry",(Date.now() + 60 * 60 * 1000).toString());
+    localStorage.setItem("tokenExpiry",(Date.now() + 5 * 60 * 60 * 1000).toString());
     return data;
 
+}
+
+
+export async function GetProfile() {
+    const response = await fetch(`${API_BASE_URL}/profile`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+    const data = await response.json();
+     if (!response.ok) {
+        throw new Error(data.error || data.message || "Failed to fetch profile");
+    }
+    return data;
+}
+
+export async function UpdateProfile(data: any) {
+  const response = await fetch(`${API_BASE_URL}/profile`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+    const result = await response.json();
+     if (!response.ok) {
+        throw new Error(result.error || result.message || "Failed to Update profile");
+    }
+    return data;
+}
+
+export async function DeleteProfile() {
+  const response = await fetch(`${API_BASE_URL}/profile`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+
+  const result = await response.json();
+   if (!response.ok) {
+      throw new Error(result.error || result.message || "Failed to delete profile");
+  }
+  return result;
+}
+
+export async function Logout() {
+    const response  = await fetch(`${API_BASE_URL}/logout`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error || data.message || "Logout failed");
+    }
+    
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpiry");
+
+    return data;
 }
