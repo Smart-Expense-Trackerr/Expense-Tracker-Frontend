@@ -86,11 +86,11 @@ export default function Profile() {
     <div className="flex min-h-screen bg-[#0B132B] text-gray-200">
       <Sidebar/>
    
-    <div className="p-8 font-semibold">
+    <div className="flex-1 p-8 font-semibold">
       <h2 className="text-2xl font-semibold mb-6">Profile</h2>
 
       {!editing ? (
-        <div className="bg-[#1C2541] p-6 rounded-lg">
+        <div className="bg-[#1C2541] p-6 rounded-lg ">
             <div className="flex flex-col gap-5">
             <p>Name: {user.name}</p>
             <p>Email: {user.email}</p>
@@ -125,7 +125,7 @@ export default function Profile() {
         >
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
-            value={form.name}
+            value={form.name || ""}
             onChange={(e) =>
               setForm({ ...form, name: e.target.value })
             }
@@ -133,7 +133,7 @@ export default function Profile() {
 
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
-            value={form.email}
+            value={form.email || ""}
             onChange={(e) =>
               setForm({ ...form, email: e.target.value })
             }
@@ -141,7 +141,7 @@ export default function Profile() {
 
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
-            value={form.phoneNumber}
+            value={form.phoneNumber || ""}
             onChange={(e) =>
               setForm({ ...form, phoneNumber: e.target.value })
             }
@@ -149,7 +149,7 @@ export default function Profile() {
 
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
-            value={form.budget}
+            value={form.budget || ""}
             onChange={(e) =>
               setForm({ ...form, budget: e.target.value })
             }

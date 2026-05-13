@@ -24,6 +24,7 @@ export default function Sidebar() {
             if (result.warning) {
             setWarning(result.warning);
             }
+            navigate(0)
 
             setOpen(false); 
 
@@ -90,7 +91,9 @@ export default function Sidebar() {
                 Expenses
             </button>
 
-            <button className="text-left hover:text-blue-400">
+            <button 
+            onClick={() => navigate("/dashboard/analytics")}
+            className="text-left hover:text-blue-400">
                 Analytics
             </button>
             </nav>

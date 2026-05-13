@@ -7,7 +7,7 @@ import Login from "./auth/login";
 import Dashboard from "./pages/Dashboard";
 import Expenses from "./pages/Expenses";
 import Profile from "./pages/Profile";
-import { useEffect } from "react";
+import Analytics from "./pages/Analytics";
 import AuthCheck from "./auth/AuthCheck";
 
 const router = createBrowserRouter([
@@ -41,6 +41,10 @@ const router = createBrowserRouter([
             {
               path: "dashboard/profile",
               element: <Profile/>
+            },
+            {
+              path: "dashboard/analytics",
+              element: <Analytics/>
             }
         ]
       }

@@ -66,7 +66,7 @@ export async function DeleteExpense(id: string){
 
 
 export async function UpdateExpense(id: string, updatedData: any) {
-  const res = await fetch(`http://localhost:5000/expenses/${id}`, {
+  const res = await fetch(`${API_BASE_URL}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

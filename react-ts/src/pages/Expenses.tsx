@@ -78,11 +78,11 @@ export default function Expenses() {
   return (
     <div className="flex min-h-screen bg-[#0B132B] text-gray-200">
           <Sidebar/>
-    <div className="p-8 ">
+    <div className="flex-1 p-8 ">
       <h2 className="text-2xl font-semibold mb-4">All Expenses</h2>
        {success && <Success title="Success" description={success} />}
        {error && <Error title="Error" description={error} />}
-      <div className="space-y-3 w-150">
+      <div className="space-y-3">
         {expenses.length === 0 ? (
           <p>No expenses yet</p>
         ) : (

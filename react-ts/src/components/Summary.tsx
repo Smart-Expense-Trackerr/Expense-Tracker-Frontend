@@ -56,25 +56,38 @@ export default function Summary() {
       <p>Expense: ₦{summary.totalExpense}</p>
       <p>Assets: ₦{summary.totalAssets}</p>
       <p>Balance: ₦{summary.balance}</p>
+      <p>Budget: ₦{summary.budget}</p>
+
+      <div
+        className={`p-4 rounded-lg mt-4 ${
+          summary.status === "danger"
+            ? "bg-red-500/20 text-danger"
+            : summary.status === "warning"
+            ? "bg-yellow-500/20 text-warning"
+            : "bg-green-500/20 text-success"
+        }`}
+      >
+        {summary.message}
+      </div>
 
       <ul className="space-y-2 list-none">
-  {summary.insights.map(
-    (item: { message: string; status: string }, index: number) => (
-      <li
-        key={index}
-        className={
-          item.status === "danger"
-            ? "text-red-400"
-            : item.status === "warning"
-            ? "text-yellow-400"
-            : "text-green-400"
-        }
-      >
-        {item.message}
-      </li>
-    )
-  )}
-</ul>
+      {summary.insights.map(
+        (item: { message: string; status: string }, index: number) => (
+          <li
+            key={index}
+            className={
+              item.status === "danger"
+                ? "text-danger"
+                : item.status === "warning"
+                ? "text-warning"
+                : "text-success"
+            }
+          >
+            {item.message}
+          </li>
+        )
+      )}
+    </ul>
     </div>
   );
 }
