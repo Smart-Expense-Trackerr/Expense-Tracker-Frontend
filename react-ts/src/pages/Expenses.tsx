@@ -80,7 +80,7 @@ export default function Expenses() {
   return (
     <PageLoading className="flex min-h-screen bg-[#0B132B] text-gray-200">
           <Sidebar/>
-    <div className="flex-1 p-8 ml-64 ">
+    <div className="flex-1 p-4 md:p-8 md:ml-64 ">
       <h2 className="text-2xl font-semibold mb-4">All Expenses</h2>
        {success && <Success title="Success" description={success} />}
        {error && <Error title="Error" description={error} />}

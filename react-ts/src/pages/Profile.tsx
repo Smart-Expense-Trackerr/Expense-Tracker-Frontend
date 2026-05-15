@@ -87,14 +87,14 @@ export default function Profile() {
     <PageLoading className="flex min-h-screen bg-[#0B132B] text-gray-200">
       <Sidebar/>
    
-    <div className="flex-1 p-8 ml-64 font-semibold">
+    <div className="flex-1 p-4 md:p-8 md:ml-64 font-semibold w-full overflow-x-hidden">
       <h2 className="text-2xl font-semibold mb-6">Profile</h2>
 
       {!editing ? (
-        <div className="bg-[#1C2541] p-6 rounded-lg ">
+        <div className="bg-[#1C2541] p-4 rounded-lg ">
             <div className="flex flex-col gap-5">
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
+            <p  className="break-words">Name: {user.name}</p>
+            <p  className="break-words">Email: {user.email}</p>
             <p>PhoneNumber: {user.phoneNumber}</p>
             <p>Budget: {user.budget}</p>
             </div>

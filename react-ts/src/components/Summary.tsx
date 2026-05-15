@@ -29,7 +29,7 @@ export default function Summary() {
         
       <h2 className="text-xl mb-4">Summary</h2>
 
-      <div className="flex gap-3 mb-4">
+      <div className="flex md:flex-row flex-col gap-3 mb-4">
         <input
           type="date"
           value={startDate}
@@ -46,7 +46,7 @@ export default function Summary() {
 
         <button
           onClick={fetchSummary}
-          className="bg-blue-500 px-4 rounded"
+          className="bg-blue-500 px-4 py-2 rounded"
         >
           Filter
         </button>
