@@ -97,6 +97,7 @@ export default function SignUp() {
 
           <input
             type="text"
+            name="name"
             placeholder="Name"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-green-400"
             value={enterValue.name}
@@ -105,6 +106,7 @@ export default function SignUp() {
 
           <input
             type="email"
+            name="email"
             placeholder="Email"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-green-400"
             value={enterValue.email}
@@ -113,6 +115,7 @@ export default function SignUp() {
 
           <input
             type="password"
+            name="password"
             placeholder="Password"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-green-400"
             value={enterValue.password}

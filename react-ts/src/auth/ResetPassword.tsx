@@ -85,6 +85,7 @@ export default function ResetPassword() {
             <label className="block mb-1">New Password</label>
             <input
               type="password"
+              name="newPassword"
               value={enteredValue.newPassword}
               onChange={(e) => setEnteredValue({ ...enteredValue, newPassword: e.target.value })}
               className="w-full px-4 py-2 rounded bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-500"

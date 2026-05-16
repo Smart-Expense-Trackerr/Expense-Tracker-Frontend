@@ -142,6 +142,7 @@ export default function Profile() {
 
               <input
                 type="password"
+                name="currentPassword"
                 placeholder="Current Password"
                 className="w-full p-2 mb-3 bg-[#0B132B] rounded"
                 value={passwordForm.currentPassword}
@@ -155,6 +156,7 @@ export default function Profile() {
 
               <input
                 type="password"
+                name="newPassword"
                 placeholder="New Password"
                 className="w-full p-2 mb-3 bg-[#0B132B] rounded"
                 value={passwordForm.newPassword}
@@ -183,6 +185,7 @@ export default function Profile() {
         >
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
+            name="name"
             value={form.name || ""}
             onChange={(e) =>
               setForm({ ...form, name: e.target.value })
@@ -191,6 +194,7 @@ export default function Profile() {
 
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
+            name="email"
             value={form.email || ""}
             onChange={(e) =>
               setForm({ ...form, email: e.target.value })
@@ -199,6 +203,7 @@ export default function Profile() {
 
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
+            name="phoneNumber"
             value={form.phoneNumber || ""}
             onChange={(e) =>
               setForm({ ...form, phoneNumber: e.target.value })
@@ -207,6 +212,7 @@ export default function Profile() {
 
           <input
             className="w-full p-2 bg-[#0B132B] rounded"
+            name="budget"
             value={form.budget || ""}
             onChange={(e) =>
               setForm({ ...form, budget: e.target.value })

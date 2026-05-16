@@ -76,6 +76,7 @@ export default function ExpenseModal({ open, onClose, onSubmit, loading, initial
         onSubmit={handleSubmit}>
         <select
           className="w-full p-2 mb-3 bg-[#0B132B] rounded"
+          name="type"
           value={form.type}
           onChange={(e) => setForm({ ...form, type: e.target.value })}
         >
@@ -89,6 +90,7 @@ export default function ExpenseModal({ open, onClose, onSubmit, loading, initial
           type="number"
           placeholder="Amount"
           className="w-full p-2 mb-3 bg-[#0B132B] rounded"
+          name="amount"
           value={form.amount}
           onChange={(e) => setForm({ ...form, amount: e.target.value })}
         />
@@ -96,6 +98,7 @@ export default function ExpenseModal({ open, onClose, onSubmit, loading, initial
         {/* CATEGORY */}
         <select
           className="w-full p-2 mb-3 bg-[#0B132B] rounded"
+          name="category"
           value={form.category}
           onChange={(e) => setForm({ ...form, category: e.target.value })}
         >
@@ -112,6 +115,7 @@ export default function ExpenseModal({ open, onClose, onSubmit, loading, initial
           type="text"
           placeholder="Description"
           className="w-full p-2 mb-3 bg-[#0B132B] rounded"
+          name="description"
           value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
         />
@@ -119,6 +123,7 @@ export default function ExpenseModal({ open, onClose, onSubmit, loading, initial
         {/* CURRENCY */}
         <select
           className="w-full p-2 mb-4 bg-[#0B132B] rounded"
+          name="currency"
           value={form.currency}
           onChange={(e) => setForm({ ...form, currency: e.target.value })}
         >

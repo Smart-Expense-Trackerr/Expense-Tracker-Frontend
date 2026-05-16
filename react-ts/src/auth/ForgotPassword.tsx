@@ -83,6 +83,7 @@ export default function ForgotPassword() {
             <label className="block mb-1">Email</label>
             <input
               type="email"
+              name="email"
               value={enteredValue.email}
               onChange={(e) => setEnteredValue({ ...enteredValue, email: e.target.value })}
               className="w-full px-4 py-2 rounded bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-green-500"
