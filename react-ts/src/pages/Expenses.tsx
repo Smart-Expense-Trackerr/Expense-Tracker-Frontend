@@ -77,6 +77,9 @@ export default function Expenses() {
     }
     }, [success, error]);
 
+      if (!expenses) return <p className="text-gray-200 p-8 md:ml-64">Loading...</p>;
+
+
   return (
     <PageLoading className="flex min-h-screen bg-[#0B132B] text-gray-200">
           <Sidebar/>

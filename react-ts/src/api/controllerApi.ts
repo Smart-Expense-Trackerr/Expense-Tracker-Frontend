@@ -1,4 +1,5 @@
-const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/user`;
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/expenses`;
+
 
 export async function GetInsights() {
   const response = await fetch(`${API_BASE_URL}/insights`, {
