@@ -107,7 +107,6 @@ export default function Login() {
             value={enteredValue.password}
             onChange={(e) => setEnteredValue({...enteredValue, password: e.target.value})}
           />
-
           <button
             type="submit"
             className="w-full bg-green-500 hover:bg-green-600 hover:scale-105 transition p-3 rounded-lg font-medium"
@@ -121,7 +120,7 @@ export default function Login() {
           Don't have an account? <Link to="/Signup" className="text-green-500 hover:text-green-600">Sign Up</Link>
         </p>
 
-        <p className="text-sm text-center mt-4 text-gray-300">Forget your password? <Link to="/forgot-password" className="text-green-500 hover:text-green-600">Reset it</Link></p>
+        <p className="text-sm text-center mt-4 text-gray-300">Forgot password? <Link to="/forgot-password" className="text-green-500 hover:text-green-600">Reset it</Link></p>
 
       </motion.div>
 

@@ -98,7 +98,7 @@ export default function Home() {
             <div className="flex flex-col md:mt-5 mt-5 md:sapce-y-5 space-y-4">
                 <button 
                 onClick={handleCreateAccount} 
-                className="border bg-blue-500 hover:bg-blue-600 w-full max-w-md hover:scale-105 transition mx-auto gap-5 rounded-2xl shadow-2xl text-text-primary font-medium px-5 py-3 flex justify-center">Create Account</button>
+                className="border bg-green-500 hover:bg-green-600 w-full max-w-md hover:scale-105 transition mx-auto gap-5 rounded-2xl shadow-2xl text-text-primary font-medium px-5 py-3 flex justify-center">Create Account</button>
                 <button 
                 onClick={handleSignIn} 
                 className="border hover:bg-black/50 w-full max-w-md mx-auto hover:scale-105 transition  gap-5 rounded-2xl shadow-2xl text-text-primary font-medium px-5 py-3 flex justify-center">Sign In</button>

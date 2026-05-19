@@ -121,6 +121,7 @@ export default function SignUp() {
             value={enterValue.password}
             onChange={(e) => setEnterValue({...enterValue, password: e.target.value})}
           />
+           <p className="text-[11px]">Password must contain at least 6 characters, including uppercase, lowercase, number, and special character</p>
 
           <button
             type="submit"
